@@ -17,11 +17,11 @@ ANSIBLE_HOME=`dirname "$FULL_PATH"`
 export ANSIBLE_HOSTS="$ANSIBLE_HOME/hacking/hosts"
 
 ansible() {
-	/usr/bin/env ansible --user=vagrant --private-key="$ANSIBLE_HOME/hacking/keys/insecure_private_key" $@
+	/usr/bin/env ansible --user=openstack --private-key="$ANSIBLE_HOME/hacking/keys/insecure_private_key" $@
 }
 
 ansible-playbook() {
-	/usr/bin/env ansible-playbook --user=vagrant --private-key="$ANSIBLE_HOME/hacking/keys/insecure_private_key" $@
+	/usr/bin/env ansible-playbook --user=openstack --private-key="$ANSIBLE_HOME/hacking/keys/insecure_private_key" $@
 }
 
 # Print out values unless -q is set

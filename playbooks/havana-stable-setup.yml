@@ -5,7 +5,7 @@
 
   vars:
     # Options: folsom-stable, essex-stable, grizzly-trunk
-    openstack_release: folsom-stable
+    openstack_release: havana-stable
 
   vars_files:
     - ../vars/global.yml

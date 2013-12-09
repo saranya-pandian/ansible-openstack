@@ -1,6 +1,6 @@
 ---
 - hosts: controller;network;compute
-  user: vagrant
+  user: openstack
   sudo: True
 
   vars_files:
