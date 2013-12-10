@@ -136,26 +136,26 @@
       notify: Restart glance services
 
     #
-    # setup quantum
+    # setup neutron
     #
-    - name: Install Quantum
+    - name: Install Neutron
       apt: name=$item state=present
       with_items:
-        - quantum-server
-        - quantum-plugin-openvswitch
+        - neutron-server
+        - neutron-plugin-openvswitch
 
-    - name: Create DB for quantum
-      mysql_db: name=quantum state=present
+    - name: Create DB for neutron
+      mysql_db: name=neutron state=present
 
-    - name: Create quantum db user and enable rights to quantum db
-      mysql_user: name=${quantum_user} host=% password=${quantum_db_password} priv=${quantum_user}.*:ALL
-    - name: Update ovs_quantum_plugin.ini
-      template: src=../templates/${dist_tag}/${openstack_release}/quantum/ovs_quantum_plugin.ini dest=/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini mode=0600
-      notify: Restart quantum services
+    - name: Create neutron db user and enable rights to neutron db
+      mysql_user: name=${neutron_user} host=% password=${neutron_db_password} priv=${neutron_user}.*:ALL
+    - name: Update ovs_neutron_plugin.ini
+      template: src=../templates/${dist_tag}/${openstack_release}/neutron/ovs_neutron_plugin.ini dest=/etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini mode=0600
+      notify: Restart neutron services
 
     - name: Update apt-paste.ini
-      template: src=../templates/${dist_tag}/${openstack_release}/quantum/api-paste.ini dest=/etc/quantum/api-paste.ini mode=0600
-      notify: Restart quantum services
+      template: src=../templates/${dist_tag}/${openstack_release}/neutron/api-paste.ini dest=/etc/neutron/api-paste.ini mode=0600
+      notify: Restart neutron services
 
     #
     # setup nova
@@ -253,10 +253,10 @@
         - glance-api
         - glance-registry
 
-    - name: Restart quantum services
+    - name: Restart neutron services
       service: name=$item state=restarted
       with_items:
-        - quantum-server
+        - neutron-server
 
     - name: Restart nova services
       service: name=$item state=restarted

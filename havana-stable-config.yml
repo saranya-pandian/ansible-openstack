@@ -6,8 +6,8 @@ keystone_user: keystone
 keystone_db_password: keysarelocked
 glance_user: glance
 glance_db_password: keysarelocked
-quantum_user: quantum
-quantum_db_password: keysarelocked
+neutron_user: neutron
+neutron_db_password: keysarelocked
 nova_user: nova
 nova_db_password: keysarelocked
 cinder_user: cinder
